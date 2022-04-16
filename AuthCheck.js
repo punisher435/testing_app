@@ -3,7 +3,7 @@ import React, {useEffect} from 'react'
 import { connect } from 'react-redux';
 import { checkAuthenticated, load_user } from './redux/actions/authactions';
 
-import Intro from './screens/Intro';
+import RedirectHome from './RedirectHome';
 
 const AuthCheck = (props) => {
 
@@ -20,9 +20,12 @@ const AuthCheck = (props) => {
     }, []);
 
     return (
-       <Intro />
+
+       <RedirectHome/>
     )
 }
+
+
 
 export default connect(null, { checkAuthenticated, load_user })(AuthCheck);
 
