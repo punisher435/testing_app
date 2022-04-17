@@ -6,6 +6,7 @@ export default {
     grey:'grey',
     sendermessages:'#A2DBFA',
     receivermessages:'#F4F9F9',
+    black:'black',
 }
 
 /* #178AE5   #185ADB*/

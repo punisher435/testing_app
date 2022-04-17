@@ -21,15 +21,24 @@ if(props.isAuthenticated)
 }
 else{
     return (
-        <View>
+      
        
                <Intro />
-               </View>
+             
     )
 }
 
    
 }
+
+const styles = StyleSheet.create({
+    container:{
+      flex:1,
+      alignItems:'center',
+      justifyContent:'center',
+      backgroundColor:'#fff',
+    }
+   });
 
 const mapStateToProps = state => ({
     isAuthenticated: state.authreducers.isAuthenticated,

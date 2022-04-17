@@ -1,5 +1,6 @@
 
 import React, {useEffect} from 'react'
+import { StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { checkAuthenticated, load_user } from './redux/actions/authactions';
 
@@ -20,10 +21,22 @@ const AuthCheck = (props) => {
     }, []);
 
     return (
+        <View style={styles.container}>
+<RedirectHome/>
 
-       <RedirectHome/>
+        </View>
+       
     )
 }
+
+const styles = StyleSheet.create({
+    container:{
+      flex:1,
+      alignItems:'center',
+      justifyContent:'center',
+      backgroundColor:'#fff',
+    }
+   });
 
 
 

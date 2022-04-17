@@ -8,7 +8,11 @@ import AuthCheck from './AuthCheck';
 export default function App() {
   return (
     <Provider store = { store }>
+      <View style={styles.container}>
       <AuthCheck />
+
+      </View>
+     
     </Provider>
   );
 }
