@@ -8,6 +8,7 @@ export default {
     receivermessages:'#F4F9F9',
     black:'black',
     lightgrey:'#F5F5F5',
+    normgrey:'#D3D3D3',
 }
 
 /* #178AE5   #185ADB*/
