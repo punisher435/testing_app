@@ -144,7 +144,7 @@ function Login({sendotp}) {
           autoCapitalize="none"
           autoCorrect={false}
           
-          
+          secureTextEntry={true}
           name="Password"
           placeholder="Password"
           
@@ -164,6 +164,7 @@ function Login({sendotp}) {
         </View>
         </View>
       </Form>
+      
     </Screen>
     </>
   );

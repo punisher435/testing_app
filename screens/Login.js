@@ -1,19 +1,24 @@
 import React,{useState} from "react";
-import { StyleSheet} from "react-native";
+import { SocialIcon } from 'react-native-elements';
+import { StyleSheet,Text,View,TouchableOpacity} from "react-native";
 import * as Yup from "yup";
 import { connect } from 'react-redux';
+import { Icon } from 'react-native-elements'
+
 import { useNavigation } from '@react-navigation/native';
 
 import Screen from "../components/Screen";
 import { Form, FormField, SubmitButton} from "../components/forms";
 
 import { sendotp } from '../redux/actions/authactions';
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 
 const validationSchema = Yup.object().shape({
   
-  phone: Yup.string().required().min(10).max(10).label("Phone"),
-  country_code: Yup.object().required().nullable().label("Country code"),
+  
+  username: Yup.string().required().label("Username is required"),
+  password: Yup.string().required().label("password is required"),
 });
 
 const codes = [
@@ -31,9 +36,9 @@ const obj1={
   color:'white',
   x1:10,
   x2:10,
-  x3:0,
-  x4:0,
-  width:110,
+  x3:10,
+  x4:10,
+  width:'100%',
 }
 
 function Login({sendotp}) {
@@ -42,6 +47,10 @@ function Login({sendotp}) {
   const [loading,setloading] =useState(false);
   const [modalVisible,setModalVisible] =useState(false);
   const [text,settext] =useState('');
+
+  const redirectlogin = () => {
+    navigation.navigate('Register');
+  }
 
   const submitform = async ({phone,country_code}) => {
     setloading(true);
@@ -56,11 +65,7 @@ function Login({sendotp}) {
       console.log(res.data);
       
      
-      navigation.navigate('Verify',{
-        signup:false,
-        data:res.data,
-        login:true,
-      });
+     
     } catch (error) {
       setloading(false);
       settext(error.response.data.msg);
@@ -76,31 +81,107 @@ function Login({sendotp}) {
     <>
    
     <Screen style={styles.container}>
+      <Text style={styles.title}>
+        Welcome Back!
+      </Text>
+
+      <Text style={styles.description}>
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+      
+      
+      </Text>
+
       
       <Form
-        initialValues={{ phone:"",country_code:{
-          backgroundColor: "#fc5c65",
-          icon: "floor-lamp",
-          label: "India +91",
-          value: "+91",
-        }, }}
+        initialValues={{ username:"",
+        password:"",
+      }}
         onSubmit={submitform}
         validationSchema={validationSchema}
       >
 
      
-      
         <FormField
           autoCapitalize="none"
           autoCorrect={false}
-          icon="phone"
-          keyboardType="numeric"
-          name="phone"
-          placeholder="Phone"
+         
+          
+          name="Username"
+          placeholder="Username"
           
         />
        
-        <SubmitButton title="Login" obj={obj1}/>
+        <FormField
+          autoCapitalize="none"
+          autoCorrect={false}
+          secureTextEntry={true}
+          
+          name="Password"
+          placeholder="Password"
+          
+        />
+
+<View style={styles.logincon}>
+        
+        <View style={styles.loginbutton}>
+        <TouchableOpacity
+          
+          onPress={redirectlogin}
+        >
+          <Text style={styles.logintext}>Forgot Password?</Text>
+        </TouchableOpacity>
+        </View>
+        </View>
+
+        <View style={styles.buttoncontainer}>
+        <SubmitButton title="Sign in" obj={obj1}/>
+        </View>
+        
+        <View style={styles.line}>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+  <View style={{flex: 1, height: 1, backgroundColor: Colors.dark}} />
+  <View>
+    <Text style={{width: 50, textAlign: 'center'}}>OR</Text>
+  </View>
+  <View style={{flex: 1, height: 1, backgroundColor: Colors.dark}} />
+</View>
+        </View>
+
+        <View style={styles.iconcon}>
+          <View style={styles.icon}>
+          <SocialIcon
+          raised={false}
+          type='google'
+        />
+
+          </View>
+          <View style={styles.icon}>
+          <SocialIcon
+          raised={false}
+          type='facebook'
+        />
+          </View>
+          <View style={styles.icon}>
+          <Icon
+          raised={false}
+          type='apple1'
+        />
+          </View>
+        </View>
+
+        <View style={styles.signupcon}>
+        <Text style={styles.textcon}>Don't have an account ?</Text>
+        <View style={styles.loginbutton}>
+        <TouchableOpacity
+          
+          onPress={redirectlogin}
+        >
+          <Text style={styles.logintext}>Register now</Text>
+        </TouchableOpacity>
+        </View>
+        </View>
+
       </Form>
     </Screen>
     </>
@@ -112,7 +193,58 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
     flex:1,
-    justifyContent:'center'
+    
+  },
+  title:{
+    textAlign:'center',
+    fontSize:25,
+    fontWeight:'bold',
+    marginBottom:10,
+    marginTop:20,
+  },
+  description:{
+    textAlign:'center',
+    fontSize:12,
+    color:Colors.grey,
+    marginBottom:20,
+   
+    marginTop:10,
+  },
+  buttoncontainer:{
+    marginTop:15,
+  },
+  buttoncontainer:{
+
+  },
+  textcon:{
+    fontSize:15,
+    color:Colors.normgrey,
+  },
+  logintext:{
+    fontWeight:'bold',
+    fontSize:15,
+  },
+  loginbutton:{
+    marginLeft:10,
+  },
+  logincon:{
+    flexDirection:'row',
+    justifyContent:'flex-end',
+  },
+  signupcon:{
+    flexDirection:'row',
+    justifyContent:'center',
+  },
+  linecon:{
+    flexDirection:'row',
+  },
+  iconcon:{
+    flexDirection:'row',
+    justifyContent:'center',
+  },
+  icon:{
+marginLeft:2,
+marginRight:2,
   },
 });
 
