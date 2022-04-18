@@ -20,7 +20,7 @@ import { AuthContext } from '../components/context';
 
 import Users from '../model/users';
 
-const SignInScreen = ({navigation}) => {
+const Login = ({navigation}) => {
 
     const [data, setData] = React.useState({
         username: '',
@@ -243,7 +243,7 @@ const SignInScreen = ({navigation}) => {
     );
 };
 
-export default SignInScreen;
+export default Login;
 
 const styles = StyleSheet.create({
     container: {
