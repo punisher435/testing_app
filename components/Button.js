@@ -4,21 +4,28 @@ import { StyleSheet, Text, TouchableOpacity} from 'react-native'
 
 import Colors from '../config/colors';
 
-export default function Button({ title, onPress, color = "theme" }) {
+export default function Button({ title, onPress,obj }) {
     return (
         <TouchableOpacity
-      style={[styles.button, { backgroundColor: Colors[color] }]}
+      style={[styles.button, { backgroundColor: Colors[obj.bgcolor],
+        borderBottomRightRadius:obj.x4,
+        borderTopRightRadius:obj.x3,
+        borderBottomLeftRadius:obj.x2,
+        borderTopLeftRadius:obj.x1,
+        width:obj.width,
+      }]}
       onPress={onPress}
     >
-      <Text style={styles.text}>{title}</Text>
+      <Text style={[styles.text,{color:Colors[obj.color]},]}>{title}</Text>
     </TouchableOpacity>
     )
 }
 
 const styles = StyleSheet.create({
 button:{
-    backgroundColor: Colors.theme,
-    borderRadius: 25,
+    backgroundColor: Colors.dark,
+    borderRadius: 10,
+   
     justifyContent: "center",
     alignItems: "center",
     padding: 15,

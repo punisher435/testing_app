@@ -27,6 +27,9 @@ const CarouselItem = ({ item }) => {
 }
 
 const styles = StyleSheet.create({
+    container:{
+        
+    },
     cardView: {
         
         width: width - 20,

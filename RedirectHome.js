@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react'
 import { connect } from 'react-redux';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View,Dimensions } from 'react-native';
 
-import Intro from './screens/Intro';
+import NavigationTab from './screens/NavigationTab';
 import Home from './screens/Home';
 
-
+const { width, heigth } = Dimensions.get('window')
 
 const RedirectHome = (props) => {
 
@@ -21,9 +21,12 @@ if(props.isAuthenticated)
 }
 else{
     return (
-      
+      <View style={styles.container}>
+         
+          <NavigationTab />
+      </View>
        
-               <Intro />
+               
              
     )
 }
@@ -33,10 +36,10 @@ else{
 
 const styles = StyleSheet.create({
     container:{
-      flex:1,
-      alignItems:'center',
-      justifyContent:'center',
-      backgroundColor:'#fff',
+        flex:1,
+  
+     width:width,
+     
     }
    });
 

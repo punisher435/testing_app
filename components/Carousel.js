@@ -88,7 +88,7 @@ const Carousel = ({ data }) => {
 const styles = StyleSheet.create({
     dotView: { flexDirection: 'row', justifyContent: 'center', },
     container:{
-        flex:0.87,
+        flex:1,
        
        
 
