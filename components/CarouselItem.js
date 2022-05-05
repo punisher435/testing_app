@@ -11,29 +11,29 @@ const { width, height } = Dimensions.get('window')
 const CarouselItem = ({ item }) => {
     return (
         <View style={styles.container}>
-        <View style={styles.cardView}>
-            <Image style={styles.image} source={{ uri: item.url }} />
-            <View style={styles.textView}>
-                {/* <Text style={styles.itemTitle}> {item.title}</Text>
+            <View style={styles.cardView}>
+                <Image style={styles.image} source={{ uri: item.url }} />
+                <View style={styles.textView}>
+                    {/* <Text style={styles.itemTitle}> {item.title}</Text>
                 <Text style={styles.itemDescription}>{item.description}</Text> */}
+                </View>
             </View>
-        </View>
-        <View style={styles.textarea}>
-        <Text style={styles.itemTitle1}> {item.title}</Text>
-        <Text style={styles.itemDescription1}>{item.description}</Text>
-        </View>
+            <View style={styles.textarea}>
+                <Text style={styles.itemTitle1}> {item.title}</Text>
+                <Text style={styles.itemDescription1}>{item.description}</Text>
+            </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    container:{
-        
+    container: {
+
     },
     cardView: {
-        
+
         width: width - 20,
-        height: 3*(height / 5),
+        height: 3 * (height / 5),
         backgroundColor: 'white',
         margin: 10,
         borderRadius: 10,
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     },
     image: {
         width: width - 20,
-        height: 3*(height / 5),
+        height: 3 * (height / 5),
         borderRadius: 10
     },
     itemTitle: {
@@ -76,30 +76,30 @@ const styles = StyleSheet.create({
         elevation: 5
     },
 
-    textarea:{
+    textarea: {
         width: width - 20,
-        textAlign:'center',
-        justifyContent:'center',
-        marginTop:10,
-        marginLeft:10,
+        textAlign: 'center',
+        justifyContent: 'center',
+        marginTop: 10,
+        marginLeft: 10,
     },
 
 
     itemTitle1: {
         color: colors.dark,
         fontSize: fontsize.title,
-        
-        textAlign:'center',
-        justifyContent:'center',
+
+        textAlign: 'center',
+        justifyContent: 'center',
         fontWeight: "bold",
 
     },
     itemDescription1: {
         color: colors.grey,
         fontSize: fontsize.description,
-        textAlign:'center',
-        justifyContent:'center',
-        marginTop:10,
+        textAlign: 'center',
+        justifyContent: 'center',
+        marginTop: 10,
     }
 })
 

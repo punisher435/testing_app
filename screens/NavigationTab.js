@@ -1,5 +1,5 @@
 import React from 'react'
-import {Text, StyleSheet, Dimensions, View } from 'react-native'
+import { Text, StyleSheet, Dimensions, View } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -18,35 +18,35 @@ const { width, heigth } = Dimensions.get('window')
 
 
 function NavigationTab() {
-    return (
-     
-        <NavigationContainer style={styles.screen} >
-          
-        <WelcomeStack.Navigator initialRouteName="Intro" screenOptions={{
-          headerShown:false,
-        }} >
-           <WelcomeStack.Screen name="Intro" component={Intro} />
-           <WelcomeStack.Screen name="Register" component={Register} />
-           <WelcomeStack.Screen name="Login" component={Login} />
-        </WelcomeStack.Navigator>
-      
-        </NavigationContainer>
-       
-      
-    )
-  }
+  return (
+
+    <NavigationContainer style={styles.screen} >
+
+      <WelcomeStack.Navigator initialRouteName="Intro" screenOptions={{
+        headerShown: false,
+      }} >
+        <WelcomeStack.Screen name="Intro" component={Intro} />
+        <WelcomeStack.Screen name="Register" component={Register} />
+        <WelcomeStack.Screen name="Login" component={Login} />
+      </WelcomeStack.Navigator>
+
+    </NavigationContainer>
+
+
+  )
+}
 
 
 
 export default NavigationTab
 
 const styles = StyleSheet.create({
-  screen:{
-   
- 
+  screen: {
 
-},
-container:{
-  flex:1,
-}
+
+
+  },
+  container: {
+    flex: 1,
+  }
 })
