@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import {
-  useTheme,
 
   Drawer,
   Text,
@@ -59,7 +58,7 @@ export function DrawerContent(props) {
 
 
             label={() => (<Text style={{ color: color1, fontSize: size2 }}>Category</Text>)}
-            onPress={() => { }}
+            onPress={() => {props.navigation.navigate("Category") }}
           />
           <DrawerItem
             icon={({ color, size }) => (
@@ -70,7 +69,7 @@ export function DrawerContent(props) {
               />
             )}
             label={() => (<Text style={{ color: color1, fontSize: size2 }}>About</Text>)}
-            onPress={() => { }}
+            onPress={() => {props.navigation.navigate("About") }}
           />
           <DrawerItem
             icon={({ color, size }) => (
@@ -81,7 +80,7 @@ export function DrawerContent(props) {
               />
             )}
             label={() => (<Text style={{ color: color1, fontSize: size2 }}>Messages</Text>)}
-            onPress={() => { }}
+            onPress={() => {props.navigation.navigate("Messages")  }}
           />
           <DrawerItem
             icon={({ color, size }) => (
@@ -92,7 +91,7 @@ export function DrawerContent(props) {
               />
             )}
             label={() => (<Text style={{ color: color1, fontSize: size2 }}>Settings</Text>)}
-            onPress={() => { }}
+            onPress={() => { props.navigation.navigate("Settings") }}
           />
           <DrawerItem
             icon={({ color, size }) => (
@@ -103,7 +102,7 @@ export function DrawerContent(props) {
               />
             )}
             label={() => (<Text style={{ color: color1, fontSize: size2 }}>Roles</Text>)}
-            onPress={() => { }}
+            onPress={() => { props.navigation.navigate("Roles") }}
           />
 
         </Drawer.Section>
@@ -120,7 +119,7 @@ export function DrawerContent(props) {
             />
           )}
           label={() => (<Text style={{ color: color1, fontSize: size2 }}>Help</Text>)}
-          onPress={() => { }}
+          onPress={() => { props.navigation.navigate("Help") }}
         />
       </Drawer.Section>
     </View>

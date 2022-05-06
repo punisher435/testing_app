@@ -22,34 +22,49 @@ import { DrawerContent } from '../components/Drawer';
 
 const Drawer = createDrawerNavigator();
 
-function MainTabScreen({ navigation }) {
+function Category({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Main Screen</Text>
+      <Text>Category</Text>
     </View>
   );
 }
 
-function SupportScreen({ navigation }) {
+function About({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Second screen</Text>
+      <Text>About</Text>
     </View>
   );
 }
 
-function SettingsScreen({ navigation }) {
+function Messages({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Third screen</Text>
+      <Text>Messages</Text>
     </View>
   );
 }
 
-function BookmarkScreen({ navigation }) {
+function Settings({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Fourth screen</Text>
+      <Text>Settings</Text>
+    </View>
+  );
+}
+function Roles({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Roles</Text>
+    </View>
+  );
+}
+
+function Help({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Help</Text>
     </View>
   );
 }
@@ -89,7 +104,7 @@ const App = () => {
     }
   }
 
-  const theme = isDarkTheme ? CustomDarkTheme : CustomDefaultTheme;
+  const theme = isDarkTheme ? null : CustomDefaultTheme;
 
 
   return (
@@ -105,11 +120,14 @@ const App = () => {
 
             },
           }}
+          initialRouteName="Category"
         >
-          <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
-          <Drawer.Screen name="SupportScreen" component={SupportScreen} />
-          <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
-          <Drawer.Screen name="BookmarkScreen" component={BookmarkScreen} />
+          <Drawer.Screen name="Category" component={Category} />
+          <Drawer.Screen name="About" component={About} />
+          <Drawer.Screen name="Messages" component={Messages} />
+          <Drawer.Screen name="Settings" component={Settings} />
+          <Drawer.Screen name="Roles" component={Roles} />
+          <Drawer.Screen name="Help" component={Help} />
         </Drawer.Navigator>
 
 
