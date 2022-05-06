@@ -3,32 +3,27 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import * as Yup from "yup";
 import { connect } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
+import axios from "axios";
 
 import Screen from "../components/Screen";
 import { Form, FormField, SubmitButton } from "../components/forms";
 
-import { sendotp } from '../redux/actions/authactions';
+import { signup } from '../redux/actions/authactions';
 import { Colors } from "react-native/Libraries/NewAppScreen";
+import ActivityIndicator from "../components/Loading";
+import AppModal from '../components/AppModal'
 
 
 const validationSchema = Yup.object().shape({
-
   phone: Yup.string().required().min(10).max(10).label("Phone no. is required"),
   name: Yup.string().required().label("name is required"),
   business_name: Yup.string().required().label("business name is required"),
   email: Yup.string().required().label("email is required"),
   password: Yup.string().required().label("password is required"),
+  
 });
 
-const codes = [
-  {
-    backgroundColor: "#fc5c65",
-    icon: "phone",
-    label: "India +91",
-    value: "+91",
-  },
 
-];
 
 const obj1 = {
   bgcolor: 'dark',
@@ -40,7 +35,7 @@ const obj1 = {
   width: '100%',
 }
 
-function Login({ sendotp }) {
+function Register({ signup }) {
   const navigation = useNavigation();
 
   const [loading, setloading] = useState(false);
@@ -51,25 +46,46 @@ function Login({ sendotp }) {
     navigation.navigate('Login');
   }
 
-  const submitform = async ({ phone, country_code }) => {
+  const submitform = async ({
+    phone,
+    name,
+    business_name,
+    email,
+    password,
+  }) => {
     setloading(true);
-    console.log(phone);
-    console.log(country_code.value);
+    console.log("submit form");
 
-    try {
-      const res = await sendotp({
-        phone, country_code: country_code.value,
-      })
-      console.log('success')
-      console.log(res.data);
+    const config = {
+      headers: {
+          'Content-Type': 'application/json',
+          'Accept': '*/*',
+      }
+  }
 
+  const body = JSON.stringify({
+      firstName:name,
+      lastName:business_name,
+      email: email,
+      password:password,
+      phoneNumber:phone
+  }); 
 
+ console.log(body);
+  try {
+    const res=await axios.post(`https://thenightmarketer-hiring.herokuapp.com/user/register`, body, config);
+    console.log("success");
+    setloading(false);
+    console.log(res.data);
+    navigation.navigate('Login');
+  } catch (error) {
+    console.log(error);
+    setloading(false);
+    setModalVisible(true);
+    settext(error.response.data.message);
+  }     
 
-    } catch (error) {
-      setloading(false);
-      settext(error.response.data.msg);
-      setModalVisible(true);
-    }
+  
 
   }
 
@@ -80,6 +96,8 @@ function Login({ sendotp }) {
     <>
 
       <Screen style={styles.container}>
+      <ActivityIndicator visible={loading} />
+    <AppModal modalVisible={modalVisible} setModalVisible={setModalVisible} text={text}/>
         <Text style={styles.title}>
           Sign Up!
         </Text>
@@ -119,7 +137,7 @@ function Login({ sendotp }) {
             autoCorrect={false}
 
 
-            name="business name"
+            name="business_name"
             placeholder="Business name"
 
           />
@@ -146,7 +164,7 @@ function Login({ sendotp }) {
             autoCorrect={false}
 
             secureTextEntry={true}
-            name="Password"
+            name="password"
             placeholder="Password"
 
           />
@@ -221,4 +239,4 @@ const mapStateToProps = state => ({
   isAuthenticated: state.isAuthenticated
 })
 
-export default connect(mapStateToProps, { sendotp })(Login);
+export default connect(mapStateToProps, { signup })(Register);

@@ -6,11 +6,11 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import NavigationTab from './screens/NavigationTab';
 import Home from './screens/Home';
 
-const { width, heigth } = Dimensions.get('window')
+const { width } = Dimensions.get('window')
 
 const RedirectHome = (props) => {
 
-    if (!props.isAuthenticated) {
+    if (props.isAuthenticated) {
         return (
             <SafeAreaProvider>
                 <View style={styles.container}>

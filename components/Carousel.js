@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, StyleSheet, Dimensions, FlatList, Animated } from 'react-native'
+import { View,  StyleSheet, Dimensions, FlatList, Animated } from 'react-native'
 import CarouselItem from './CarouselItem'
 
 
@@ -20,7 +20,7 @@ function infiniteScroll(dataList) {
             scrolled = 0
         }
 
-        this.flatList.scrollToOffset({ animated: true, offset: scrollValue })
+       
 
     }, 3000)
 }
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     },
     main: {
         flex: 1,
-        marginTop: 10,
+        marginTop: 20,
     },
 })
 

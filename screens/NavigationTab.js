@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, StyleSheet, Dimensions, View } from 'react-native'
+import {  StyleSheet, Dimensions } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -7,13 +7,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import Intro from './Intro';
 import Register from './Register';
 import Login from './Login';
-import colors from '../config/colors';
 
 
 
 const WelcomeStack = createStackNavigator();
 
-const { width, heigth } = Dimensions.get('window')
 
 
 

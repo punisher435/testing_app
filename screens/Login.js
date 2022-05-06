@@ -10,8 +10,16 @@ import { useNavigation } from '@react-navigation/native';
 import Screen from "../components/Screen";
 import { Form, FormField, SubmitButton } from "../components/forms";
 
-import { sendotp } from '../redux/actions/authactions';
+
 import { Colors } from "react-native/Libraries/NewAppScreen";
+import axios from "axios";
+import ActivityIndicator from "../components/Loading";
+import AppModal from '../components/AppModal'
+import {
+ 
+  LOGIN_SUCCESS,
+
+} from '../redux/actiontypes/authactiontypes';
 
 
 const validationSchema = Yup.object().shape({
@@ -21,15 +29,6 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required().label("password is required"),
 });
 
-const codes = [
-  {
-    backgroundColor: "#fc5c65",
-    icon: "phone",
-    label: "India +91",
-    value: "+91",
-  },
-
-];
 
 const obj1 = {
   bgcolor: 'dark',
@@ -41,7 +40,7 @@ const obj1 = {
   width: '100%',
 }
 
-function Login({ sendotp }) {
+function Login(props) {
   const navigation = useNavigation();
 
   const [loading, setloading] = useState(false);
@@ -52,25 +51,36 @@ function Login({ sendotp }) {
     navigation.navigate('Register');
   }
 
-  const submitform = async ({ phone, country_code }) => {
-    setloading(true);
-    console.log(phone);
-    console.log(country_code.value);
+  const submitform = async ({
+    username,
+    password,
+  }) => {
+    
+    const config = {
+      headers: {
+          'Content-Type': 'application/json',
+          'Accept': '*/*',
+      }
+  };
+setloading(true);
+console.log("dtar");
+  const body = JSON.stringify({email:username,password});
+console.log(body);
+  try {
+    const res=await axios.post('https://thenightmarketer-hiring.herokuapp.com/user/login', body, config)
+    console.log("success");
+    setloading(false);
+  
+    props.loginsuccess(res.data);
 
-    try {
-      const res = await sendotp({
-        phone, country_code: country_code.value,
-      })
-      console.log('success')
-      console.log(res.data);
+  } catch (error) {
+    console.log(error.response.data.message);
+    setloading(false);
+    setModalVisible(true);
+    settext(error.response.data.message);
+  }
 
-
-
-    } catch (error) {
-      setloading(false);
-      settext(error.response.data.msg);
-      setModalVisible(true);
-    }
+    
 
   }
 
@@ -81,6 +91,8 @@ function Login({ sendotp }) {
     <>
 
       <Screen style={styles.container}>
+      <ActivityIndicator visible={loading} />
+    <AppModal modalVisible={modalVisible} setModalVisible={setModalVisible} text={text}/>
         <Text style={styles.title}>
           Welcome Back!
         </Text>
@@ -108,7 +120,7 @@ function Login({ sendotp }) {
             autoCorrect={false}
 
 
-            name="Username"
+            name="username"
             placeholder="Username"
 
           />
@@ -118,7 +130,7 @@ function Login({ sendotp }) {
             autoCorrect={false}
             secureTextEntry={true}
 
-            name="Password"
+            name="password"
             placeholder="Password"
 
           />
@@ -254,4 +266,15 @@ const mapStateToProps = state => ({
   isAuthenticated: state.isAuthenticated
 })
 
-export default connect(mapStateToProps, { sendotp })(Login);
+const mapDispatchToProps = (dispatch) => {
+  return {
+   
+    
+
+    loginsuccess: (res) => dispatch({  type: LOGIN_SUCCESS,
+      payload: res.data }),
+    
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Login);

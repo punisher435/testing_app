@@ -1,7 +1,6 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 
-import AppText from '../components/Text';
 import Carousel from '../components/Carousel';
 import { dummyData } from '../config/Data'
 import Button from '../components/Button';

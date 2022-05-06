@@ -3,12 +3,16 @@ import { View, StyleSheet, Text, Image, Dimensions } from 'react-native'
 
 import colors from '../config/colors';
 import fontsize from '../config/fontsize';
+import defaultStyles from '../config/styles';
 
 const { width, height } = Dimensions.get('window')
 
 
 
 const CarouselItem = ({ item }) => {
+
+  
+
     return (
         <View style={styles.container}>
             <View style={styles.cardView}>
@@ -82,6 +86,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginTop: 10,
         marginLeft: 10,
+        fontFamily:defaultStyles.fontFamily,
     },
 
 
@@ -92,6 +97,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         justifyContent: 'center',
         fontWeight: "bold",
+        fontFamily:'notoserif',
 
     },
     itemDescription1: {
@@ -100,6 +106,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         justifyContent: 'center',
         marginTop: 10,
+        fontFamily:defaultStyles.fontFamily,
     }
 })
 

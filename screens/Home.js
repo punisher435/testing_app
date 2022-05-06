@@ -1,7 +1,7 @@
 
 
-import React, { useEffect } from 'react';
-import { View, ActivityIndicator, Text } from 'react-native';
+import React from 'react';
+import { View, Text } from 'react-native';
 import {
   NavigationContainer,
   DefaultTheme as NavigationDefaultTheme,

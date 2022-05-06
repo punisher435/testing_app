@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Animated, useWindowDimensions } from 'react-native'
+import { View,  StyleSheet, Animated, useWindowDimensions } from 'react-native'
 import React from 'react'
 
 export default function Paginator({ data, scrollX }) {
