@@ -15,11 +15,11 @@ import AppModal from '../components/AppModal'
 
 
 const validationSchema = Yup.object().shape({
-  phone: Yup.string().required().min(10).max(10).label("Phone no. is required"),
-  name: Yup.string().required().label("name is required"),
-  business_name: Yup.string().required().label("business name is required"),
-  email: Yup.string().required().label("email is required"),
-  password: Yup.string().required().label("password is required"),
+  phone: Yup.string().required().min(10).max(10).label("Phone no."),
+  name: Yup.string().required().label("name"),
+  business_name: Yup.string().required().label("business name"),
+  email: Yup.string().required().label("email"),
+  password: Yup.string().required().label("password"),
   
 });
 

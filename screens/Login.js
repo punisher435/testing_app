@@ -25,8 +25,8 @@ import {
 const validationSchema = Yup.object().shape({
 
 
-  username: Yup.string().required().label("Username is required"),
-  password: Yup.string().required().label("password is required"),
+  username: Yup.string().required().label("Username"),
+  password: Yup.string().required().label("password"),
 });
 
 
